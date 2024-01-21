@@ -120,4 +120,56 @@ public class ArrayBasicsTest {
             Assert.assertEquals(output.length, input);
         }
     }
+
+    /* 
+     * Tests returnNewArraySizeN and getLengthOfArray for an array size 0.
+    */
+    @Test 
+    public void arraySize0() {
+        /* returnNewArraySizeN(0) should return a new array of size 0. */
+        int val = 0;
+        int[] arr = ab.returnNewArraySizeN(val);
+        if(arr == null){
+            Assert.fail("array nas not been created.");
+        }else{
+            /* If we have an array of size 0, getLengthOfArray should return 0 */
+            Assert.assertEquals(val, ab.getLengthOfArray(arr));
+        }
+    }
+
+    /* 
+     * Tests returnNewArraySizeN, getLengthOfArray, setNthElementOfArray, getNthElementOfArray on 
+     * an array of type String.
+    */
+    @Test
+    public void combinedTest() {
+        /* returnNewArraySizeN(5) should return a new array of size 5. */
+        int val = 5;
+        String[] arr = ab.returnNewArraySizeN(val);
+        if(arr == null){
+            Assert.fail("array nas not been created.");
+        }else{
+            /* If we have an array of size 0, getLengthOfArray should return 0. */
+            Assert.assertEquals(val, ab.getLengthOfArray(arr));
+        }
+
+        /* arr is a String array of size 5. arr[3] should be the default value, null. */
+        int ind = 3;
+        String expected1 = null;
+        String actual1 = ab.getNthElementOfArray(arr, ind);
+        Assert.assertEquals(expected1, actual1);
+
+        /*
+         * arr.setNthElementOfArray(input, ind, "hello") should change the value at index 3 to "hello"
+         * resulting in an array: {null, null, null, "hello", null}.
+         */
+        ab.setNthElementOfArray(arr, ind, "hello");
+        Assert.assertEquals(arr[ind], "hello");
+         
+        /* Use getNthElement to verify setNthElementOfArray is corret and that the value of arr[3] = "hello". */
+        String expected2 = "hello";
+        String actual2 = ab.getNthElementOfArray(arr, ind);
+        Assert.assertEquals(expected2, actual2);
+    }
+
 }
